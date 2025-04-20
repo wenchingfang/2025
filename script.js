@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const photos = [
     { path: 'images/kh1.JPG', caption: 'Das erste Mal in Kaohsiung ☀️' },
     { path: 'images/mj1.JPG', caption: 'Mahjong lernen... gar nicht so einfach! :D' },
-    { path: 'images/ph1syanni.JPG', caption: '1 Jahr 💕' },
+    { path: 'images/1syanni.JPG', caption: '1 Jahr 💕' },
     { path: 'images/ali.HEIC', caption: 'Du bist über den Wolken ☁︎' },
     { path: 'images/camp3.JPG', caption: 'Camping Abenteuer!' },
     { path: 'images/camp2.JPG', caption: '' }, // Leere Caption ist ok
