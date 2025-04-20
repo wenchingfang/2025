@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
     { path: 'images/kh1.JPG', caption: 'Das erste Mal in Kaohsiung ☀️' },
     { path: 'images/mj1.JPG', caption: 'Mahjong lernen... gar nicht so einfach! :D' },
     { path: 'images/1syanni.JPG', caption: '1 Jahr 💕' },
-    { path: 'images/ali.HEIC', caption: 'Du bist über den Wolken ☁︎' },
+    { path: 'images/ali.JPG', caption: 'Du bist über den Wolken ☁︎' },
     { path: 'images/camp3.JPG', caption: 'Camping Abenteuer!' },
     { path: 'images/camp2.JPG', caption: '' }, // Leere Caption ist ok
     { path: 'images/hl2.JPG', caption: 'Hualien 🌊 Erkundung' },
