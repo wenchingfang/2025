@@ -1,38 +1,136 @@
+/* 基本設定 */
 body {
-  background: linear-gradient(to bottom, #2c3e50, #3498db);
+  margin: 0; /* 移除預設邊距 */
+  padding: 0; /* 移除預設內距 */
   font-family: 'Georgia', serif;
   color: white;
   text-align: center;
-  padding: 40px;
-  position: relative;
+  overflow: hidden; /* 隱藏超出畫面的內容 (例如動畫星星或泡泡) */
+  background-color: #050a1a; /* 深藍色背景 */
+  min-height: 100vh; /* 確保 body 至少和視窗一樣高 */
+  position: relative; /* 為了絕對定位子元素 (星星、泡泡) */
+}
+
+/* --- 星空背景 --- */
+.stars-background {
+  position: fixed; /* 固定位置，不隨滾動改變 */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* 放到最底層 */
   overflow: hidden;
 }
 
-h1 {
+.star {
+  position: absolute;
+  background-color: white;
+  border-radius: 50%;
+  animation: twinkle 5s infinite ease-in-out;
+}
+
+/* 不同大小和位置的星星 */
+.star1 {
+  width: 1px;
+  height: 1px;
+  top: 20%;
+  left: 30%;
+  animation-delay: 0s;
+}
+
+.star2 {
+  width: 2px;
+  height: 2px;
+  top: 50%;
+  left: 70%;
+  animation-delay: 1s;
+  animation-duration: 4s; /* 讓有些星星閃爍速度不同 */
+}
+
+.star3 {
+  width: 1px;
+  height: 1px;
+  top: 80%;
+  left: 45%;
+  animation-delay: 2s;
+}
+
+/* 可以再增加更多 .star4, .star5... 改變 top, left, width, height, animation-delay */
+
+/* 星星閃爍動畫 */
+@keyframes twinkle {
+  0%, 100% {
+    opacity: 0.5;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}
+
+/* --- Landing Page --- */
+.landing-page {
+  display: flex; /* 使用 Flexbox 來置中 */
+  flex-direction: column; /* 垂直排列 */
+  justify-content: center; /* 垂直置中 */
+  align-items: center; /* 水平置中 */
+  min-height: 100vh; /* 佔滿整個視窗高度 */
+  position: relative; /* 確保在星空之上 */
+  z-index: 1;
+  padding: 20px;
+  box-sizing: border-box; /* padding 不會增加元素寬高 */
+  background-color: rgba(0, 0, 0, 0.3); /* 可選：加一點點半透明背景讓文字更清楚 */
+}
+
+.landing-page h1 {
   font-size: 2.5em;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
-.button-container {
-  margin-top: 30px;
-}
-
-button {
-  background-color: #8e44ad;
-  color: white;
-  border: none;
-  padding: 15px 25px;
-  margin: 10px;
-  border-radius: 20px;
-  font-size: 1em;
+.landing-page button {
+  padding: 15px 30px;
+  font-size: 1.2em;
   cursor: pointer;
+  background-color: #f0a0a0; /* 粉色系 */
+  border: none;
+  border-radius: 5px;
+  color: #333;
   transition: background-color 0.3s ease;
 }
 
-button:hover {
-  background-color: #9b59b6;
+.landing-page button:hover {
+  background-color: #e88080;
 }
 
+
+/* --- Main Content --- */
+.main-content {
+  /* display: none; 由 inline style 控制 */
+  padding: 40px;
+  position: relative; /* 為了裡面的絕對定位元素 (泡泡) */
+  z-index: 1; /* 確保在星空之上 */
+  min-height: calc(100vh - 80px); /* 計算高度，減去 padding */
+  box-sizing: border-box;
+  background-color: rgba(0, 0, 0, 0.5); /* 可選：加一點半透明背景 */
+  border-radius: 10px; /* 可選：加圓角 */
+  margin: 20px; /* 與視窗邊緣留點距離 */
+  display: none; /* JS 會改成 block */
+}
+
+.main-content h1 {
+  color: #f0a0a0; /* 粉色系標題 */
+  margin-bottom: 20px;
+}
+
+.main-content p {
+  line-height: 1.6;
+  margin-bottom: 20px;
+  font-size: 1.1em;
+}
+
+/* --- 泡泡 --- */
 .bubble {
   position: absolute;
   bottom: -100px;
@@ -41,16 +139,319 @@ button:hover {
   background: rgba(255, 255, 255, 0.2);
   border-radius: 50%;
   animation: rise 10s infinite ease-in;
+  z-index: 0; /* 讓泡泡在文字後面 */
 }
 
 @keyframes rise {
   0% {
     transform: translateY(0) scale(1);
-    opacity: 1;
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.5; /* 中途稍微明顯一點 */
   }
   100% {
-    transform: translateY(-1200px) scale(1.5);
+    transform: translateY(-100vh) scale(1.5); /* 向上移動整個視窗高度 */
     opacity: 0;
   }
 }
 
+/* --- 照片回顧區 (基本樣式，之後可再美化) --- */
+#photo-slideshow {
+  margin-top: 40px;
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 20px;
+  border-radius: 8px;
+}
+
+#photo-slideshow h2 {
+  color: #f0a0a0;
+  margin-bottom: 20px;
+}
+
+#slideshow-image {
+  max-width: 80%; /* 限制圖片最大寬度 */
+  max-height: 400px; /* 限制圖片最大高度 */
+  height: auto; /* 高度自動 */
+  border: 3px solid white;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+
+/* --- 按鈕區 --- */
+.button-container {
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.3); /* 加條分隔線 */
+}
+
+.button-container p {
+  margin-bottom: 20px;
+  font-size: 1.2em;
+}
+
+.button-container button {
+  display: block; /* 讓按鈕各自佔一行 */
+  width: 80%; /* 按鈕寬度 */
+  max-width: 400px; /* 最大寬度 */
+  margin: 15px auto; /* 上下間距 15px，左右自動 (置中) */
+  padding: 15px;
+  font-size: 1.1em;
+  cursor: pointer;
+  background-color: #a0c0f0; /* 藍色系 */
+  border: none;
+  border-radius: 5px;
+  color: #333;
+  transition: background-color 0.3s ease;
+}
+
+.button-container button:hover {
+  background-color: #80a8e8;
+}
+/* --- 過渡畫面樣式 --- */
+#transition-screen {
+  /* display 由 JS 控制 */
+  position: absolute; /* 絕對定位，覆蓋在 main-content 上方 */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(5, 10, 26, 0.9); /* 深藍色半透明背景 */
+  display: flex; /* 使用 Flexbox 置中 */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 10; /* 確保在最上層 */
+  opacity: 0; /* 初始透明，用於淡入效果 */
+  transition: opacity 0.5s ease-in-out; /* 淡入淡出效果 */
+}
+
+#transition-screen.visible {
+  opacity: 1; /* 淡入後可見 */
+}
+
+#transition-text {
+  margin-top: 40px; /* 禮物盒下方間距 */
+  font-size: 1.6em;
+  color: #f0a0a0; /* 粉色系 */
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+}
+
+/* --- 禮物盒動畫 --- */
+.gift-box-animation {
+  position: relative;
+  width: 100px; /* 盒子寬度 */
+  height: 80px;  /* 盒子高度 (身體部分) */
+}
+
+.gift-body {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #d9534f; /* 紅色系 */
+  border: 2px solid #b3413d;
+  box-sizing: border-box;
+}
+/* 垂直緞帶 */
+.gift-body::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+  width: 20px; /* 緞帶寬度 */
+  height: 100%;
+  background-color: #f0c040; /* 金色緞帶 */
+}
+
+.gift-lid {
+  position: absolute;
+  bottom: 80px; /* 定位在身體正上方 */
+  left: -5px; /* 比身體寬一點 */
+  width: 110px; /* 比身體寬一點 */
+  height: 25px; /* 蓋子高度 */
+  background-color: #d9534f; /* 紅色系 */
+  border: 2px solid #b3413d;
+  border-bottom: none; /* 底部無邊框 */
+  box-sizing: border-box;
+  z-index: 2; /* 蓋子在緞帶上方 */
+  transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* 打開動畫效果 */
+}
+/* 水平緞帶 */
+.gift-lid::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  width: 100%;
+  height: 20px; /* 緞帶寬度 */
+  background-color: #f0c040; /* 金色緞帶 */
+}
+
+/* 動畫: 盒子打開時的狀態 */
+.gift-box-animation.open .gift-lid {
+  transform: translateY(-40px) rotate(-20deg); /* 蓋子向上移動並傾斜 */
+}
+
+/* --- 禮物結果區 --- */
+#gift-result {
+  margin-top: 30px;
+  padding: 20px;
+  background-color: rgba(255, 215, 0, 0.2); /* 淡金色背景 */
+  border-radius: 8px;
+}
+#gift-result h1 {
+    color: #FFD700; /* 金色 */
+}
+/* --- 初始文字動畫 --- */
+.initial-message {
+  /* opacity: 0; transform: translateY(20px); 不再需要，由 animation 控制 */
+  /* animation: 名稱 持續時間 速度曲線 延遲次數 填充模式; */
+  animation: fadeInSlideUp 1s ease-out 0.5s forwards;
+}
+
+@keyframes fadeInSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px); /* 從下方 30px 開始 */
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0); /* 移動到原始位置 */
+  }
+}
+
+#slideshow-caption {
+  margin-top: 15px; /* 與圖片的間距 */
+  font-size: 1em;
+  font-style: italic; /* 斜體 */
+  color: #ccc; /* 淺灰色 */
+  min-height: 1.2em; /* 保持一點高度，避免切換時跳動 */
+}
+/* ... 其他樣式 ... */
+
+/* 確保新增的 div 初始隱藏 (雖然 HTML 有 inline style，加 CSS 規則更保險) */
+#practical-gift-clues, #experience-gift-options {
+  display: none;
+}
+
+/* 主分類按鈕的樣式 (如果需要調整) */
+#main-gift-choices button {
+background-color: #a0c0f0; /* 沿用之前的藍色系 */
+/* 可以添加其他樣式 */
+}
+#main-gift-choices button:hover {
+ background-color: #80a8e8;
+}
+
+
+/* 線索按鈕的樣式 */
+#practical-gift-clues {
+  margin-top: 30px; /* 與提示文字間距 */
+}
+
+.clue-button {
+display: block; /* 獨佔一行 */
+width: 90%; /* 寬度 */
+max-width: 500px; /* 最大寬度 */
+margin: 12px auto; /* 上下間距，左右置中 */
+padding: 15px;
+font-size: 1em; /* 可以比主按鈕小一點 */
+cursor: pointer;
+background-color: #f0e68c; /* 卡其色/淡黃色系 */
+border: 1px solid #d8c860;
+border-radius: 5px;
+color: #555;
+text-align: left; /* 文字靠左對齊 */
+transition: background-color 0.3s ease;
+}
+
+.clue-button:hover {
+background-color: #e8dca0;
+}
+
+/* 響應式調整 (可以加在之前的 @media 區塊裡) */
+@media (max-width: 768px) {
+  .clue-button {
+      font-size: 0.9em;
+  }
+}
+@media (max-width: 480px) {
+   .clue-button {
+      font-size: 0.85em;
+      padding: 12px;
+  }
+}
+
+.choice-button {
+  display: block;
+  width: 80%;
+  max-width: 350px;
+  margin: 15px auto;
+  padding: 15px;
+  font-size: 1.1em;
+  cursor: pointer;
+  background-color: #5bc0de; /* Blauton */
+  border: none;
+  border-radius: 5px;
+  color: white;
+  transition: background-color 0.3s ease;
+}
+
+.choice-button:hover {
+  background-color: #31b0d5;
+}
+
+/* --- Hinweis-Anzeigebereich --- */
+#clue-display-area {
+  margin-top: 30px;
+  text-align: center;
+}
+
+#clue-display-area p:first-child { /* Titel "Folge den Hinweisen..." */
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #f0a0a0; /* Pink */
+}
+
+/* Einzelne Hinweise (von JS hinzugefügt) */
+p.clue {
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 10px 15px;
+  margin: 10px auto;
+  border-radius: 5px;
+  max-width: 80%;
+  font-size: 1.1em;
+  color: #eee;
+  opacity: 0; /* Startet unsichtbar für Animation */
+  transform: translateX(-20px); /* Startet leicht links */
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+/* Sichtbarer Zustand für Hinweise */
+p.clue.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* --- Abschließende Icons --- */
+#final-icons {
+    margin-top: 30px;
+    font-size: 1.8em;
+    letter-spacing: 10px;
+}
+
+/* --- Responsive Anpassungen (in @media hinzufügen) --- */
+
+/* In @media (max-width: 768px) { ... } hinzufügen: */
+.choice-button { font-size: 1em; padding: 12px; }
+p.clue { font-size: 1em; max-width: 90%; }
+#final-icons { font-size: 1.5em; }
+
+/* In @media (max-width: 480px) { ... } hinzufügen: */
+.choice-button { font-size: 0.9em; padding: 10px; }
+p.clue { font-size: 0.9em; }
+#final-icons { font-size: 1.3em; letter-spacing: 8px; }

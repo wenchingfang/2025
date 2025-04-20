@@ -2,31 +2,82 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Birthday Gift</title>
-  <link rel="stylesheet" href="style.css">
+  <title>HBD to Cornelius!💕</title> <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Happy Birthday, My Love 🌸</h1>
-  <p>
-    It’s been two magical years since we met — full of laughter, adventures, and memories.<br>
-    You’re about to start a new chapter, and I’m so proud of you.<br>
-    But before that… there’s a surprise waiting.
-  </p>
 
-  <div class="button-container">
-    <p><strong>The gift to start the age is...</strong></p>
-    <button onclick="chooseGift('camping')">🚗 2-day Camping Trip with BYD</button>
-    <button onclick="chooseGift('scuba')">🤿 Scuba Mask to Dive in Marsa Alam</button>
-    <button onclick="chooseGift('surf')">🏄‍♂️ Windsurfing Class in France</button>
+  <div class="stars-background">
+    <div class="star star1"></div>
+    <div class="star star2"></div>
+    <div class="star star3"></div>
+    </div>
+
+  <div class="landing-page">
+    <h1>🚀 Bist du bereit?</h1> <button id="enter-btn">Klicken, um zu starten</button> </div>
+
+  <audio id="background-music" src="Lucky.mp3" preload="auto" loop></audio>
+
+  <div class="main-content" style="display: none;">
+    <div class="initial-message">
+      <h1>Happy Birthday, Mein Schatz 🌸</h1> <p>
+        It’s been two magical years since we met — full of laughter, adventures, and memories.<br>
+        You’re about to start a new chapter, and I’m so proud of you.<br>
+        But before that… there’s a surprise waiting.
+      </p> </div>
+
+    <div id="photo-slideshow" style="display: none;">
+      <h2>Unsere schönen Momente ✨</h2> <img id="slideshow-image" src="" alt="Our Memories"> <p id="slideshow-caption"></p> </div>
+    
+    <div id="transition-screen" style="display: none;">
+      <div class="gift-box-animation">
+        <div class="gift-lid"></div>  <div class="gift-body"></div> </div>
+      <p id="transition-text">Zeit für die Überraschung...</p> </div>    
+
+    <div class="button-container" style="display: none;">
+      <p><strong>Was für ein Geschenk soll es sein?</strong></p> <div id="main-gift-choices">
+          <button id="btn-experience">🎁 Erlebnisgeschenk</button> <button id="btn-practical">🛠️ Maßgeschneidertes Geschenk</button> </div>
+
+      <div id="practical-gift-clues" style="display: none;">
+          <p><strong>Wähle einen Hinweis:</strong></p> <button class="clue-button" data-gift="mask">Hinweis 1: Damit siehst du in der 'Upside Down'-Welt klarer.</button>
+          <button class="clue-button" data-gift="fins">Hinweis 2: Damit bewegst du dich in der 'Upside Down'-Welt schneller.</button>
+          <button class="clue-button" data-gift="shoes">Hinweis 3: Für mehr Sicherheit auf dem täglichen Weg zur Arbeit.</button>
+          <button class="clue-button" data-gift="pants">Hinweis 4: Für mehr Freude auf dem täglichen Weg zur Arbeit.</button>
+      </div>
+
+      <div id="experience-gift-options" style="display: none;">
+
+        <div id="water-activity-type" style="display: none;">
+            <p><strong>Über oder unter Wasser?</strong></p>
+            <button class="choice-button" data-choice="above">🌊 Über Wasser</button>
+            <button class="choice-button" data-choice="under">🐠 Unter Wasser</button>
+        </div>
+  
+        <div id="above-water-speed" style="display: none;">
+            <p><strong>Schnell oder langsam?</strong></p>
+            <button class="choice-button" data-choice="fast">⚡ Schnell</button>
+            <button class="choice-button" data-choice="slow">🐢 Langsam</button>
+        </div>
+  
+        <div id="clue-display-area" style="display: none;">
+            <p><strong>Folge den Hinweisen...</strong></p>
+            </div>
+  
+    </div>
+  
   </div>
+  
+  <div id="gift-result" style="display: none;">
+    </div>
 
-  <!-- 動態泡泡背景 -->
-  <div class="bubble" style="left: 10%; animation-delay: 0s;"></div>
-  <div class="bubble" style="left: 25%; animation-delay: 2s;"></div>
-  <div class="bubble" style="left: 40%; animation-delay: 4s;"></div>
-  <div class="bubble" style="left: 60%; animation-delay: 1s;"></div>
-  <div class="bubble" style="left: 80%; animation-delay: 3s;"></div>
+
+    <div class="bubble" style="left: 10%; animation-delay: 0s;"></div>
+    <div class="bubble" style="left: 25%; animation-delay: 2s;"></div>
+    <div class="bubble" style="left: 40%; animation-delay: 4s;"></div>
+    <div class="bubble" style="left: 60%; animation-delay: 1s;"></div>
+    <div class="bubble" style="left: 80%; animation-delay: 3s;"></div>
+    </div>
 
   <script src="script.js"></script>
 </body>
 </html>
+
